@@ -1,0 +1,89 @@
+# Gourmet RecipeBook C++ Format
+NEXT_ID:5
+COUNT:4
+RECIPE_START
+id:1
+title:Authentic Shahi Paneer
+category:Dinner
+prep_time:15
+cook_time:25
+servings:4
+difficulty:Medium
+ingredients_count:7
+ing:Paneer cubes|300|grams
+ing:Tomato puree|1.5|cups
+ing:Cashew paste|3|tbsp
+ing:Fresh cream|0.5|cup
+ing:Garam masala|1|tsp
+ing:Kasuri methi|1|tbsp
+ing:Butter|2|tbsp
+steps_count:4
+step:Melt butter in a skillet, sauté whole spices and ginger garlic paste.
+step:Add tomato puree and cook till oil separates.
+step:Stir in cashew paste, cream, and simmer with gentle heat.
+step:Add soft paneer cubes, crushed kasuri methi, and serve hot with naan.
+RECIPE_END
+RECIPE_START
+id:2
+title:Japanese Chicken Teriyaki Bowl
+category:Dinner
+prep_time:15
+cook_time:15
+servings:2
+difficulty:Easy
+ingredients_count:7
+ing:Boneless chicken thighs|400|grams
+ing:Soy sauce|3|tbsp
+ing:Mirin or honey|2|tbsp
+ing:Sake or rice vinegar|1|tbsp
+ing:Grated fresh ginger|1|tsp
+ing:Steamed Jasmine rice|2|bowls
+ing:Toasted sesame seeds & scallions|1|tbsp
+steps_count:4
+step:Pan-fry seasoned chicken skin-side down until golden brown and crispy.
+step:Mix soy sauce, mirin, sake, and ginger into a glaze.
+step:Pour glaze into the pan; reduce over medium heat until chicken is coated in sticky sauce.
+step:Slice chicken, arrange over steamed jasmine rice, and garnish with sesame and scallions.
+RECIPE_END
+RECIPE_START
+id:3
+title:Mediterranean Avocado & Poached Egg Toast
+category:Breakfast
+prep_time:10
+cook_time:5
+servings:2
+difficulty:Easy
+ingredients_count:5
+ing:Artisan sourdough bread slices|2|slices
+ing:Ripe avocados|2|whole
+ing:Fresh eggs|2|eggs
+ing:Crumbled feta cheese|30|grams
+ing:Chili flakes & lime juice|1|tsp
+steps_count:4
+step:Toast the sourdough slices until golden and crisp.
+step:Mash avocados with lime juice, salt, and black pepper; spread generously on toast.
+step:Poach two fresh eggs in simmering water for 3 minutes.
+step:Top toast with poached egg, crumbled feta cheese, and chili flakes.
+RECIPE_END
+RECIPE_START
+id:4
+title:Decadent Chocolate Lava Cake
+category:Dessert
+prep_time:15
+cook_time:12
+servings:2
+difficulty:Medium
+ingredients_count:6
+ing:Dark chocolate (70%)|100|grams
+ing:Unsalted butter|60|grams
+ing:Powdered sugar|50|grams
+ing:Whole eggs|2|whole
+ing:All-purpose flour|30|grams
+ing:Vanilla extract|0.5|tsp
+steps_count:5
+step:Preheat oven to 400°F (200°C) and grease 2 ramekins with butter and cocoa powder.
+step:Melt chocolate and butter together in a heatproof bowl over simmering water.
+step:Whisk eggs and sugar until pale, then fold into melted chocolate with flour.
+step:Divide into ramekins and bake for 12 minutes until edges are firm but center is soft.
+step:Invert onto serving plates, dust with powdered sugar, and serve with vanilla ice cream.
+RECIPE_END

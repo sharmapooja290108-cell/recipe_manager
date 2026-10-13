@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gourmet Recipe Book Manager | C, C++ & Modern Web</title>
+  <meta name="description" content="A state-of-the-art culinary recipe book manager with real-time serving scaler, pantry ingredient matching, and C/C++ backend synchronization.">
+  
+  <!-- Modern Culinary Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Ambient Glow Backgrounds -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar" id="main-header">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-icon">🍳</div>
+        <div class="brand-text">
+          <span class="brand-title">GOURMET</span>
+          <span class="brand-subtitle">Recipe Book Manager</span>
+        </div>
+      </div>
+
+      <div class="backend-badge" id="backend-status-badge">
+        <span class="status-dot"></span>
+        <span id="backend-status-text">Checking C/C++ Sync...</span>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary" id="btn-pantry-mode" title="Find recipes based on what's in your kitchen">
+          <span>🥑</span> Pantry Matcher
+        </button>
+        <button class="btn btn-secondary" id="btn-sync-modal" title="Import/Export with C & C++ files">
+          <span>🔄</span> C/C++ Sync
+        </button>
+        <button class="btn btn-primary" id="btn-open-add-modal">
+          <span>➕</span> Add Recipe
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tags">
+        <span class="tag-pill">🔥 Multi-Language System</span>
+        <span class="tag-pill highlight">C11 • C++17 • Web Engine</span>
+      </div>
+      <h1 class="hero-heading">Craft, Scale & Savor <br><em>Masterpiece Recipes</em></h1>
+      <p class="hero-subtext">
+        Organize culinary creations, dynamically adjust ingredient portions for any party size, and seamlessly synchronize with terminal C and C++ backends.
+      </p>
+
+      <!-- Quick Stats Counters -->
+      <div class="stats-ribbon">
+        <div class="stat-card">
+          <span class="stat-num" id="stat-total-recipes">0</span>
+          <span class="stat-label">Total Recipes</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-avg-time">0m</span>
+          <span class="stat-label">Avg Cook Time</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-fastest-dish">--</span>
+          <span class="stat-label">Fastest Dish</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-categories">0</span>
+          <span class="stat-label">Cuisines / Categories</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Application Body -->
+  <main class="main-content">
+    
+    <!-- Controls & Filter Toolbar -->
+    <section class="toolbar-section">
+      <!-- Search Bar -->
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="recipe-search-input" placeholder="Search by title, ingredient (e.g. garlic, chicken), or tag..." autocomplete="off">
+        <button class="clear-search-btn" id="clear-search-btn" style="display: none;">✕</button>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-categories" id="category-filter-group">
+        <button class="category-chip active" data-category="ALL">All Recipes</button>
+        <button class="category-chip" data-category="Breakfast">🥞 Breakfast</button>
+        <button class="category-chip" data-category="Dinner">🍝 Dinner</button>
+        <button class="category-chip" data-category="Dessert">🍰 Dessert</button>
+        <button class="category-chip" data-category="QUICK">⚡ Under 25 Mins</button>
+      </div>
+
+      <!-- Advanced Filters Dropdown / Slider -->
+      <div class="filter-controls">
+        <div class="filter-item">
+          <label for="difficulty-select">Difficulty:</label>
+          <select id="difficulty-select" class="custom-select">
+            <option value="ALL">All Levels</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <label for="sort-select">Sort By:</label>
+          <select id="sort-select" class="custom-select">
+            <option value="default">Original Order</option>
+            <option value="time-asc">Cooking Time (Fastest)</option>
+            <option value="title-asc">Recipe Name (A-Z)</option>
+            <option value="servings-desc">Servings (High to Low)</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pantry Matcher Banner (Toggleable) -->
+    <section class="pantry-panel" id="pantry-panel" style="display: none;">
+      <div class="pantry-header">
+        <div>
+          <h3>🥑 Pantry Chef Assistant</h3>
+          <p>Pick ingredients you already have at home. We'll find recipes you can make right now!</p>
+        </div>
+        <button class="btn btn-sm btn-ghost" id="close-pantry-btn">✕ Close</button>
+      </div>
+      <div class="pantry-tag-selector" id="pantry-tag-list">
+        <!-- Injected via JS -->
+      </div>
+      <div class="pantry-summary" id="pantry-summary-text">
+        Click tags above to match ingredients.
+      </div>
+    </section>
+
+    <!-- Recipe Cards Grid -->
+    <section class="recipes-container">
+      <div class="section-title-row">
+        <h2 id="recipes-section-title">All Recipes</h2>
+        <span class="results-count" id="recipes-count-badge">Showing 0 recipes</span>
+      </div>
+
+      <div class="recipes-grid" id="recipes-grid">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="empty-state" style="display: none;">
+        <div class="empty-icon">🍳</div>
+        <h3>No Recipes Found</h3>
+        <p>No culinary matches were found for your current search criteria.</p>
+        <button class="btn btn-secondary" id="reset-filters-btn">Clear All Filters</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Recipe Detail & Dynamic Scaler Modal -->
+  <div class="modal-backdrop" id="recipe-modal" style="display: none;">
+    <div class="modal-card modal-lg">
+      <button class="modal-close-btn" id="close-recipe-modal">&times;</button>
+      
+      <div class="modal-body-scrollable" id="recipe-modal-content">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Recipe Modal -->
+  <div class="modal-backdrop" id="recipe-form-modal" style="display: none;">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="close-form-modal">&times;</button>
+      
+      <div class="modal-header">
+        <h3 id="form-modal-title">Add New Recipe</h3>
+        <p class="modal-subtitle">Fill in the culinary details to save to the recipe book.</p>
+      </div>
+
+      <form id="recipe-editor-form">
+        <input type="hidden" id="form-recipe-id" value="">
+
+        <div class="form-row">
+          <div class="form-group flex-2">
+            <label for="form-title">Recipe Title *</label>
+            <input type="text" id="form-title" required placeholder="e.g. Creamy Tuscan Garlic Chicken">
+          </div>
+          <div class="form-group flex-1">
+            <label for="form-category">Category *</label>
+            <input type="text" id="form-category" list="category-suggestions" required placeholder="Dinner, Breakfast...">
+            <datalist id="category-suggestions">
+              <option value="Breakfast"></option>
+              <option value="Lunch"></option>
+              <option value="Dinner"></option>
+              <option value="Dessert"></option>
+              <option value="Snack"></option>
+              <option value="Beverage"></option>
+            </datalist>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="form-prep-time">Prep Time (mins) *</label>
+            <input type="number" id="form-prep-time" min="0" max="720" required value="15">
+          </div>
+          <div class="form-group">
+            <label for="form-cook-time">Cook Time (mins) *</label>
+            <input type="number" id="form-cook-time" min="0" max="720" required value="20">
+          </div>
+          <div class="form-group">
+            <label for="form-servings">Servings *</label>
+            <input type="number" id="form-servings" min="1" max="100" required value="4">
+          </div>
+          <div class="form-group">
+            <label for="form-difficulty">Difficulty</label>
+            <select id="form-difficulty" class="custom-select">
+              <option value="Easy">Easy</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Ingredients Section -->
+        <div class="form-section">
+          <div class="form-section-header">
+            <h4>Ingredients</h4>
+            <button type="button" class="btn btn-xs btn-secondary" id="btn-add-ing-row">+ Add Ingredient</button>
+          </div>
+          <div class="dynamic-list" id="form-ingredients-list">
+            <!-- Dynamic rows inserted here -->
+          </div>
+        </div>
+
+        <!-- Steps Section -->
+        <div class="form-section">
+          <div class="form-section-header">
+            <h4>Preparation Steps</h4>
+            <button type="button" class="btn btn-xs btn-secondary" id="btn-add-step-row">+ Add Step</button>
+          </div>
+          <div class="dynamic-list" id="form-steps-list">
+            <!-- Dynamic rows inserted here -->
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-form">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-recipe">Save Recipe</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- C & C++ Sync Modal -->
+  <div class="modal-backdrop" id="sync-modal" style="display: none;">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="close-sync-modal">&times;</button>
+      
+      <div class="modal-header">
+        <h3>C & C++ Integration Bridge</h3>
+        <p class="modal-subtitle">Transfer recipe data directly between this Web UI and your C / C++ terminal binaries.</p>
+      </div>
+
+      <div class="sync-grid">
+        <div class="sync-card">
+          <h4>📥 Pull from C Data File</h4>
+          <p>Sync current recipes from <code>recipes_data.txt</code> or upload your custom data file.</p>
+          <div class="sync-actions">
+            <button class="btn btn-sm btn-secondary" id="btn-fetch-c-file">Auto-Sync with Server</button>
+            <label class="btn btn-sm btn-ghost file-upload-btn">
+              Upload .txt / JSON
+              <input type="file" id="file-import-input" accept=".txt,.json" style="display:none;">
+            </label>
+          </div>
+        </div>
+
+        <div class="sync-card">
+          <h4>📤 Export to C / C++ Format</h4>
+          <p>Download your recipes in the exact format compatible with <code>recipe_manager_c</code> and <code>recipe_manager_cpp</code>.</p>
+          <div class="sync-actions">
+            <button class="btn btn-sm btn-primary" id="btn-export-c-format">Download recipes_data.txt</button>
+            <button class="btn btn-sm btn-secondary" id="btn-export-json">Export JSON</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sync-status-box" id="sync-status-box">
+        Status: Ready
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notifications -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>
