@@ -1,6 +1,21 @@
 # RecipeBook Data File (v1.0)
-NEXT_ID:5
-COUNT:4
+NEXT_ID:6
+COUNT:5
+RECIPE_START
+id:5
+title:test
+category:all
+prep_time:15
+cook_time:20
+servings:4
+difficulty:Medium
+ingredients_count:2
+ing:test|5|2
+ing:test|4|3
+steps_count:2
+step:step1
+step:step2
+RECIPE_END
 RECIPE_START
 id:1
 title:Classic Margherita Pizza
@@ -10,11 +25,11 @@ cook_time:12
 servings:4
 difficulty:Medium
 ingredients_count:5
-ing:Pizza dough|1.00|portion
-ing:San Marzano tomato sauce|0.50|cups
-ing:Fresh mozzarella|200.00|grams
-ing:Fresh basil leaves|10.00|leaves
-ing:Extra virgin olive oil|1.00|tbsp
+ing:Pizza dough|1|portion
+ing:San Marzano tomato sauce|0.5|cups
+ing:Fresh mozzarella|200|grams
+ing:Fresh basil leaves|10|leaves
+ing:Extra virgin olive oil|1|tbsp
 steps_count:4
 step:Stretch out the dough on parchment paper or pizza peel.
 step:Spread tomato sauce evenly, leaving a crust border.
@@ -30,12 +45,12 @@ cook_time:15
 servings:2
 difficulty:Easy
 ingredients_count:6
-ing:Fettuccine pasta|250.00|grams
-ing:Unsalted butter|50.00|grams
-ing:Heavy cream|1.00|cup
-ing:Minced garlic cloves|4.00|cloves
-ing:Grated Parmesan cheese|1.00|cup
-ing:Black pepper & salt|1.00|pinch
+ing:Fettuccine pasta|250|grams
+ing:Unsalted butter|50|grams
+ing:Heavy cream|1|cup
+ing:Minced garlic cloves|4|cloves
+ing:Grated Parmesan cheese|1|cup
+ing:Black pepper & salt|1|pinch
 steps_count:4
 step:Boil fettuccine in salted water until al dente.
 step:Melt butter in a pan over medium heat and sauté garlic for 1 minute.
@@ -51,12 +66,12 @@ cook_time:10
 servings:3
 difficulty:Easy
 ingredients_count:6
-ing:All-purpose flour|1.50|cups
-ing:Baking powder|3.50|tsp
-ing:Sugar|1.00|tbsp
+ing:All-purpose flour|1.5|cups
+ing:Baking powder|3.5|tsp
+ing:Sugar|1|tbsp
 ing:Milk|1.25|cups
-ing:Egg|1.00|whole
-ing:Fresh blueberries|1.00|cup
+ing:Egg|1|whole
+ing:Fresh blueberries|1|cup
 steps_count:3
 step:Whisk dry ingredients in a large bowl.
 step:Whisk milk and egg together, then fold into dry ingredients with blueberries.
@@ -71,10 +86,10 @@ cook_time:0
 servings:1
 difficulty:Easy
 ingredients_count:5
-ing:Frozen mixed berries|1.50|cups
-ing:Frozen banana|1.00|whole
-ing:Almond milk|0.50|cup
-ing:Chia seeds|1.00|tbsp
+ing:Frozen mixed berries|1.5|cups
+ing:Frozen banana|1|whole
+ing:Almond milk|0.5|cup
+ing:Chia seeds|1|tbsp
 ing:Granola|0.25|cup
 steps_count:2
 step:Blend frozen berries, banana, and almond milk on high until thick and smooth.

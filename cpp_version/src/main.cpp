@@ -11,7 +11,7 @@ static void printBanner() {
     std::cout << "\033[1;35m"
               << "╔════════════════════════════════════════════════════════════════════╗\n"
               << "║             ✨ GOURMET RECIPE BOOK MANAGER (C++ OOP)               ║\n"
-              << "║                 Modern C++17 Culinary Management                   ║\n"
+              << "║                 Modern C++17 Culinary Management  By Pooja         ║\n"
               << "╚════════════════════════════════════════════════════════════════════╝\n"
               << "\033[0m";
 }
